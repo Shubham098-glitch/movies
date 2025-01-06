@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Download App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #1c1c1c;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .search-bar {
+            margin: 20px;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .movie-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .movie-card {
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .movie-card img {
+            width: 100%;
+            height: auto;
+        }
+        .movie-card .content {
+            padding: 15px;
+        }
+        .movie-card h3 {
+            margin: 0 0 10px;
+        }
+        .movie-card p {
+            font-size: 14px;
+            margin: 0 0 10px;
+            color: #aaa;
+        }
+        .movie-card a {
+            text-decoration: none;
+            color: #00b4d8;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movie Download App</h1>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search movies..." oninput="filterMovies()">
+    </div>
+
+    <div class="movie-container" id="movieContainer">
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/300x400" alt="Movie Poster">
+            <div class="content">
+                <h3>The Rig</h3>
+                <a href="https://drive.google.com/file/d/your-file-id-1/view?usp=sharing" target="_blank" onclick="downloadResponse('The Rig')">Download</a>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/300x400" alt="Movie Poster">
+            <div class="content">
+                <h3>Gogol. Viy</h3>
+                <a href="https://drive.google.com/file/d/your-file-id-2/view?usp=sharing" target="_blank" onclick="downloadResponse('Gogol. Viy')">Download</a>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://i.ibb.co/vZ25h7b/Marco.jpg" alt="Movie Poster">
+            <div class="content">
+                <h3>Don't Die</h3>
+                <a href="https://drive.google.com/file/d/your-file-id-3/view?usp=sharing" target="_blank" onclick="downloadResponse('Don\'t Die')">Download</a>
+            </div>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/300x400" alt="Movie Poster">
+            <div class="content">
+                <h3>Wicked</h3>
+                <a href="https://drive.google.com/file/d/your-file-id-4/view?usp=sharing" target="_blank" onclick="downloadResponse('Wicked')">Download</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterMovies() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const movies = document.querySelectorAll('.movie-card');
+            movies.forEach(movie => {
+                const title = movie.querySelector('h3').textContent.toLowerCase();
+                movie.style.display = title.includes(searchInput) ? 'block' : 'none';
+            });
+        }
+
+        function downloadResponse(movieTitle) {
+            alert(`Starting download for: ${movieTitle}`);
+        }
+    </script>
+</body>
+</html>
